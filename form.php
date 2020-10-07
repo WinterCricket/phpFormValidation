@@ -1,9 +1,5 @@
 	
-<?php 
 
-include "style.php";
-
- ?>
 <!DOCTYPE html> 
 <html>
 <head>	
@@ -11,7 +7,8 @@ include "style.php";
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 	<script type="text/javascript" src="jquery.js"></script>  
-	<script type="text/javascript" src="validate.js"></script>  
+	<script type="text/javascript" src="validate.js"></script> 
+
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -20,7 +17,7 @@ include "style.php";
 				phone_number = phone_number.replace(/\s+/g, ""); 
 				return this.optional(element) || phone_number.length > 9 &&
 				phone_number.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
-			}, "Please specify a valid phone number");
+			}, "Please specify a valid phone number, fool!");
 
 
 			$("#form").validate();
@@ -42,23 +39,24 @@ include "style.php";
 </head>
 <body>
 
-	<form  method="post" id="form">
+	<form  action=""  method="POST" id="form">
 		<fieldset>
+
 			
 			<label for="name">Name: <em>*</em></label>
-			<input type="text" name="name" id="name" class="required" value="<?php echo $form['name'];?>"> <?php echo $error["name"];?>
+			<input type="text" name="name" id="name" class="required" value= "<?php  if(isset($form['name'])) {echo $form['name'];}?>"> <?php if(isset($error['name'])) { echo $error['name']; }?>
 
 			<label for="phone">Phone (000-000-0000): <em>*</em></label>
-			<input type="text" name="phone" id="phone" class="required phone" value="<?php echo $form['phoneUS'];?>"> <?php echo $error["phone_number"]; ?>
+			<input type="text" name="phone" id="phone" class="required phoneUS" value= "<?php  if(isset($form['phone'])) {echo $form['phone'];}?>" ><?php echo $error['phone'] ?>
 
 			<label for="fax">Fax (000-000-0000):</label>
-			<input type="text" name="fax" id="fax" value="<?php echo $form['fax'];?>"> 
+			<input type="text" name="fax" id="fax" value= "<?php  if(isset($form['fax'])) {echo $form['fax'];}?>">
 
 			<label for="email">Email: <em>*</em></label>
-			<input type="text" name="email" id="email" class="required email" value="<?php echo $form['email'];?>"> <?php echo $error["email"]; ?>
+			<input type="text" name="email" id="email" class="required email" value= "<?php  if(isset($form['email'])) {echo $form['email'];}?>"><?php echo $error['email'] ?>
 
 			<label for="comments">Comments:</label>
-			<textarea name="comments" id="comments"><?php echo $form['comments'];?></textarea>
+			<textarea name="comments" id="comments"><?php  if(isset($form['comments'])) {echo $form['comments'];}?></textarea>
 
 			<p class="required_msg">* required fields</p>
 
