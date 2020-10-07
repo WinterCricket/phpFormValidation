@@ -20,11 +20,6 @@ foreach ($required as $require) {
 if (isset($_POST['submit'])){
 	//process form
 
-foreach ($form_elements as $element) {
-
-
-	$form[$element]='';
-
 } else {
 	//display form
 	include "form.php";
